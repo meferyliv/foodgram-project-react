@@ -7,7 +7,7 @@ services:
     env_file:
       - ./.env
   backend:
-    image: mefery/foodgram-backend
+    image: mefery/foodgram-backend:v1
     restart: always
     volumes:
       - static_value:/app/back_static/
@@ -17,7 +17,7 @@ services:
     env_file:
       - ./.env
   frontend:
-    image: mefery/foodgram-frontend
+    image: mefery/foodgram-frontend:v1
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:

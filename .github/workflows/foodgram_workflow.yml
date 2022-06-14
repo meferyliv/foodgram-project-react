@@ -40,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: mefery/foodgram-backend:latest
+          tags: mefery/foodgram-backend:v1
           context: ./backend
           file: ./backend/Dockerfile
   deploy:
@@ -65,8 +65,8 @@ jobs:
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
           echo DB_HOST=${{ secrets.DB_HOST }} >> .env
           echo DB_PORT=${{ secrets.DB_PORT }} >> .env
-          sudo docker pull mefery/foodgram-frontend
-          sudo docker pull mefery/foodgram-backend
+          sudo docker pull mefery/foodgram-frontend:v1
+          sudo docker pull mefery/foodgram-backend:v1
           sudo docker-compose stop
           sudo docker-compose rm backend
           sudo docker-compose up -d
