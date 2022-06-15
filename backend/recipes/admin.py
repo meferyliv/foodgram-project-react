@@ -1,7 +1,6 @@
 from django.contrib import admin
 
 from foodgram.settings import EMPTY_FIELD
-
 from .models import (Favorite, Ingredient, IngredientAmount, Recipe,
                      ShoppingCart, Tag)
 
