@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='SECRET_KEY')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='backend localhost').split(' ')
 
@@ -129,9 +129,9 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/back_static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'back_static')
 
 MEDIA_URL = '/back_media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'back_media')
 
 EMPTY_FIELD = '-пусто-'
