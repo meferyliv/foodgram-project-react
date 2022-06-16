@@ -58,7 +58,7 @@ class CustomUserSerializer(UserSerializer):
         user = self.context.get('request').user
         if user.is_anonymous:
             return False
-        return Follow.objects.filter(user=user, author=obj.id).exists()
+        return Follow.objects.filter(user=user.id, author=obj.id).exists()
 
 
 class SimplifyRecipeSerializer(serializers.ModelSerializer):
@@ -106,11 +106,12 @@ class FollowSerializer(CustomUserSerializer):
         queryset = Recipe.objects.filter(author=obj.author)
         if limit:
             queryset = queryset[:int(limit)]
-        return SimplifyRecipeSerializer
+        return SimplifyRecipeSerializer(queryset, many=True).data
 
     def get_recipes_count(self, obj):
         return Recipe.objects.filter(author=obj.author).count()
 
     def get_is_subscribed(self, obj):
-        user = self.context.get('request').user
-        return Follow.objects.filter(user=user, author=obj.author).exists()
+        return Follow.objects.filter(
+            user=obj.user, author=obj.author
+        ).exists()
