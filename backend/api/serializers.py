@@ -126,6 +126,10 @@ class RecipeSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+# С валидацией добавления хоть 1 тэга или ингредиента я видимо
+# переборщил, т.к. в модели Recipe везде у всех полей опция
+# blank=False(по умолчанию и явно не указывал), соответственно
+# любое из полей не может быть пустым.
     def validate(self, data):
         tags = self.initial_data.get('tags')
         if not tags:

@@ -1,18 +1,19 @@
 from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
+from colorfield.fields import ColorField
 
 from users.models import CustomUser
 
 
+# Длина поля слаг была указана 200 символов в соотвествии с ТЗ(Redoc). Убрал.
 class Tag(models.Model):
     """
     Модель тегов, цвет хранится в HEX-формате.
     """
     name = models.CharField('Название тега', max_length=200, unique=True)
-    color = models.CharField('Цвет тега', max_length=7, unique=True)
+    color = ColorField(verbose_name='Цвет тега', unique=True)
     slug = models.SlugField(
         'Слаг тега',
-        max_length=200,
         unique=True,
         validators=(RegexValidator(regex=r'^[-a-zA-Z0-9_]+$',),)
     )
