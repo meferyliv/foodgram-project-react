@@ -109,7 +109,7 @@ sudo docker-compose exec backend python manage.py loaddata dump.json
 
 ## Проект в интернете
 
-Проект запущен в Яндекс.Облаке по адресу http://51.250.108.161/
+Проект запущен в Яндекс.Облаке по адресу http://51.250.111.232/
 
 Superuser login - admin@admin.com pw - admin
 
