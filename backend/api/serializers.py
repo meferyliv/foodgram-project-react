@@ -159,7 +159,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                 )
             if int(item['amount']) < 1:
                 raise serializers.ValidationError(
-                    {'ingredients': 'Колличество ингридиента не менее 1.'}
+                    'Колличество ингридиента не может быть менее 1.'
                 )
             ingredients_list.append(ingredient)
         data['ingredients'] = ingredients

@@ -21,25 +21,22 @@ def generate_shopping_list(request):
             }
         else:
             ingredients_dict[name]['amount'] += item[2]
+    pdfmetrics.registerFont(
+        TTFont('Handicraft', 'data/Handicraft.ttf', 'UTF-8')
+    )
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = (
-        'attachment;filename=shopping_cart.pdf'
+        'attachment;filename="shopping_list.pdf"'
     )
-    pdfmetrics.registerFont(
-        TTFont('DejaVuSerif', 'DejaVuSerif.ttf', 'UTF-8')
-    )
-    page = Canvas(filename=response)
-    page.setFont('DejaVuSerif', 24)
-    page.drawString(210, 800, 'Список покупок')
-    page.setFont('DejaVuSerif', 16)
-    height = 760
+    page = Canvas(response)
+    page.setFont('Handicraft', size=24)
+    page.drawString(200, 800, 'Список покупок')
+    page.setFont('Handicraft', size=16)
+    height = 750
     for i, (name, data) in enumerate(ingredients_dict.items(), 1):
-        page.drawString(
-            70, height, (
-                f'{i}.{name} -{data["amount"]}, {data["measurement_unit"]}.'
-            )
-        )
-        height -= 30
+        page.drawString(75, height, (f'{i}. {name} - {data["amount"]} '
+                                     f'{data["measurement_unit"]}'))
+        height -= 25
     page.showPage()
     page.save()
     return response
