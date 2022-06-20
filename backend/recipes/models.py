@@ -119,12 +119,6 @@ class IngredientAmount(models.Model):
     )
     amount = models.PositiveSmallIntegerField(
         'Количество ингредиента',
-        validators=(
-            MinValueValidator(
-                limit_value=1,
-                message='Количество ингредиентов не может быть менее 1',
-            ),
-        ),
     )
 
     class Meta:
