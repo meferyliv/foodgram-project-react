@@ -126,10 +126,6 @@ class RecipeSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
-# С валидацией добавления хоть 1 тэга или ингредиента я видимо
-# переборщил, т.к. в модели Recipe везде у всех полей опция
-# blank=False(по умолчанию и явно не указывал), соответственно
-# любое из полей не может быть пустым.
     def validate(self, data):
         tags = self.initial_data.get('tags')
         if not tags:
@@ -162,7 +158,7 @@ class RecipeSerializer(serializers.ModelSerializer):
                     'Ингридиенты для рецепта не могут повторяться.'
                 )
             ingredients_list.append(ingredient)
-            if int(item['amount']) < 1:
+            if int(item['amount']) < 1 or int(item['amount']) == 0:
                 raise serializers.ValidationError(
                     {'ingredients': 'Колличество ингридиента не менее 1.'}
                 )
