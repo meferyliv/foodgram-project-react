@@ -22,16 +22,16 @@ def generate_shopping_list(request):
         else:
             ingredients_dict[name]['amount'] += item[2]
     pdfmetrics.registerFont(
-        TTFont('Cabana', 'cabana.ttf', 'UTF-8')
+        TTFont('Verdana', 'verdana.ttf', 'UTF-8')
     )
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = (
         'attachment; filename="shopping_list.pdf"'
     )
     page = Canvas(response)
-    page.setFont('Cabana', size=16)
+    page.setFont('Verdana', size=24)
     page.drawString(200, 800, 'Список ингредиентов')
-    page.setFont('Cabana', size=12)
+    page.setFont('Verdana', size=16)
     height = 750
     for i, (name, data) in enumerate(ingredients_dict.items(), 1):
         page.drawString(75, height, (
