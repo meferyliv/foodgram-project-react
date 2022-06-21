@@ -1,6 +1,4 @@
 from django.http import HttpResponse
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen.canvas import Canvas
 
 from recipes.models import IngredientAmount
@@ -21,17 +19,14 @@ def generate_shopping_list(request):
             }
         else:
             ingredients_dict[name]['amount'] += item[2]
-    pdfmetrics.registerFont(
-        TTFont('Slimamif', 'Slimamif.ttf', 'UTF-8')
-    )
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = (
         'attachment; filename="shopping_list.pdf"'
     )
     page = Canvas(response)
-    page.setFont('Slimamif', size=24)
+    page.setFont('Courier', size=16)
     page.drawString(200, 800, 'Список ингредиентов')
-    page.setFont('Slimamif', size=16)
+    page.setFont('Courier', size=12)
     height = 750
     for i, (name, data) in enumerate(ingredients_dict.items(), 1):
         page.drawString(75, height, (
