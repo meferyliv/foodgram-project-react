@@ -22,7 +22,7 @@ def generate_shopping_list(request):
         else:
             ingredients_dict[name]['amount'] += item[2]
     pdfmetrics.registerFont(
-        TTFont('Verdana', 'verdana.ttf', 'UTF-8')
+        TTFont('Verdana', 'Verdana.ttf', 'UTF-8')
     )
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = (
