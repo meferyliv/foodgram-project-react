@@ -106,13 +106,3 @@ sudo docker-compose exec backend python manage.py loaddata dump.json
 
 ## Автор проекта
 Иван Лепский
-
-## Проект в интернете
-
-Проект запущен в Яндекс.Облаке по адресу http://51.250.111.232/
-
-Superuser login - admin@admin.com pw - admin
-
-User1 login - mefery@gmial.com pw - diplompw
-
-User2 login - gordon@mail.ru pw - diplompw
